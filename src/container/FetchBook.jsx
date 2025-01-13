@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import BookDetails from "../component/BookDetails";
+import BookDetails from "../component/BookDetails/BookDetails.jsx";
+import BookCard from "../component/BookCard/BookCard.jsx";
 
 const FetchBook = () => {
   const [book, setBook] = useState(null);
