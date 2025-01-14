@@ -1,11 +1,14 @@
+import Footer from "./component/Footer/Footer";
+import Header from "./component/Header/Header";
 import FetchBook from "./container/FetchBook";
 
 function App() {
   return (
     <>
       <div>
-        <h1>Google Books API</h1>
+        <Header />
         <FetchBook />
+        <Footer />
       </div>
     </>
   );
