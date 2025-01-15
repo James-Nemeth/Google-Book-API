@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import BookDetails from "../component/BookDetails/BookDetails";
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const FetchBook = ({ query }) => {
   const [book, setBook] = useState(null);
   const [error, setError] = useState(null);
 
-  const API_KEY = "AIzaSyAbeVuU0qoevlAlyMIawmeCf3GHRfTlWXM"; // Replace with your actual API key
-
   useEffect(() => {
     if (query) {
-      // Clear previous state before making a new request
       setBook(null);
       setError(null);
 
       const delayRequest = setTimeout(() => {
         const fetchBookData = async () => {
           const url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&key=${API_KEY}`;
-          console.log("Fetching URL: ", url); // Log the URL to the console
+          console.log("Fetching URL: ", url);
 
           try {
             const response = await fetch(url);
