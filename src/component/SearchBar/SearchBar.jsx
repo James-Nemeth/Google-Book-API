@@ -10,9 +10,9 @@ const SearchBar = ({ onSearch }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(inputText); // Log the value when the user clicks Search
-    onSearch(inputText); // Trigger the search action
-    setInputText(""); // Reset the input field
+    console.log(inputText);
+    onSearch(inputText);
+    setInputText("");
   };
 
   return (

@@ -1,0 +1,23 @@
+.nav {
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 1em; 
+  gap: 1em;
+
+  .link {
+    font-size: 1.1em;
+    margin-left: 1em;
+    &:visited {
+      &:hover {
+        color: brown;
+      }
+    }
+    &_active {
+      font-weight: bold;
+    }
+  }
+}
+

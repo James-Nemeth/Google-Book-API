@@ -1,12 +1,11 @@
-import React from "react";
-import classes from "./BookDetails.module.scss";
+import classes from "./BookList.module.scss";
 import BookCard from "../BookCard/BookCard";
 
-const BookDetails = ({ title, authors, thumbnail }) => {
+const BookList = ({ title, authors, thumbnail }) => {
   return (
     <div className={classes.container}>
       <BookCard>
-        <div className={classes.details}>
+        <div>
           {thumbnail && (
             <img
               src={thumbnail}
@@ -22,4 +21,4 @@ const BookDetails = ({ title, authors, thumbnail }) => {
   );
 };
 
-export default BookDetails;
+export default BookList;

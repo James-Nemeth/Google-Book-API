@@ -1,24 +1,21 @@
 import { useState } from "react";
 import Footer from "./component/Footer/Footer";
 import Header from "./component/Header/Header";
-import SearchBar from "./component/SearchBar/SearchBar";
-import FetchBook from "./container/FetchBook";
+import { BrowserRouter, Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage/HomePage";
+import BooksPage from "./pages/BooksPage/BooksPage";
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
-
   return (
     <>
-      <div>
+      <BrowserRouter>
         <Header />
-        <SearchBar onSearch={handleSearch} />
-        <FetchBook query={searchQuery} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/books" element={<BooksPage />} />
+        </Routes>
         <Footer />
-      </div>
+      </BrowserRouter>
     </>
   );
 }

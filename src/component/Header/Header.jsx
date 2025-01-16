@@ -1,7 +1,11 @@
-import classes from "./Header.module.scss";
+import NavBar from "../NavBar/NavBar";
 
 const Header = () => {
-  return <h1 className={classes.header}>Google Books API</h1>;
+  return (
+    <>
+      <NavBar />
+    </>
+  );
 };
 
 export default Header;

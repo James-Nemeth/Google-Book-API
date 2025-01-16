@@ -357,3 +357,11 @@ body {
   font-family: "Playwrite AU SA", serif;
   background-color: rgb(255, 255, 211);
 }
+
+a {
+  text-decoration: none;
+  &:visited {
+    color: black;
+
+  }
+}

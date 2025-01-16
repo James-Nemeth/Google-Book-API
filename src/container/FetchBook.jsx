@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BookDetails from "../component/BookDetails/BookDetails";
+import BookList from "../component/BookList/BookList";
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const FetchBook = ({ query }) => {
@@ -36,11 +36,11 @@ const FetchBook = ({ query }) => {
         };
 
         fetchBookData();
-      }, 1000); // 1 second delay to debounce
+      }, 1000);
 
-      return () => clearTimeout(delayRequest); // Cleanup on component unmount or query change
+      return () => clearTimeout(delayRequest);
     }
-  }, [query]); // Run effect when query changes
+  }, [query]);
 
   if (error) {
     return <p>{error}</p>;
@@ -51,7 +51,7 @@ const FetchBook = ({ query }) => {
   }
 
   return (
-    <BookDetails
+    <BookList
       title={book.title}
       authors={book.authors}
       thumbnail={book.thumbnail}
