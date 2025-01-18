@@ -1,22 +1,26 @@
 import classes from "./BookList.module.scss";
 import BookCard from "../BookCard/BookCard";
 
-const BookList = ({ title, authors, thumbnail }) => {
+const BookList = ({ books }) => {
   return (
     <div className={classes.container}>
-      <BookCard>
-        <div>
-          {thumbnail && (
+      {books.map((book, index) => (
+        <BookCard key={index}>
+          {book.thumbnail ? (
             <img
-              src={thumbnail}
-              alt={`Cover of ${title}`}
+              src={book.thumbnail}
+              alt={`Cover of ${book.title}`}
               className={classes.thumbnail}
             />
+          ) : (
+            <div className={classes.placeholder}>
+              <span className={classes.coverText}>No Book Cover Available</span>
+            </div>
           )}
-          <h1 className={classes.title}>{title}</h1>
-          <h2 className={classes.authors}>By: {authors.join(", ")}</h2>
-        </div>
-      </BookCard>
+          <h1 className={classes.title}>{book.title}</h1>
+          <h2 className={classes.authors}>By: {book.authors.join(", ")}</h2>
+        </BookCard>
+      ))}
     </div>
   );
 };
