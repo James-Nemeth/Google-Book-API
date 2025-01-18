@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import BookList from "../component/BookList/BookList";
+import BookList from "../component/BookList/BookList.jsx";
+import BookModal from "../component/BookModal/BookModal"; // Import the BookModal component
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const FetchBook = ({ query }) => {
   const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null); // Track the selected book
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track if modal is open
 
   useEffect(() => {
     if (query) {
       setBooks([]);
-      setLoading(true); // Set loading to true when a search starts
+      setLoading(true);
       setError(null);
 
       const delayRequest = setTimeout(() => {
@@ -24,9 +27,16 @@ const FetchBook = ({ query }) => {
 
             if (data.items && data.items.length > 0) {
               const bookData = data.items.slice(0, 20).map((item) => ({
+                id: item.id, // Add the book id to uniquely identify each book
                 title: item.volumeInfo.title,
                 authors: item.volumeInfo.authors || ["Unknown Author"],
                 thumbnail: item.volumeInfo.imageLinks?.thumbnail || null,
+                description: item.volumeInfo.description,
+                publisher: item.volumeInfo.publisher,
+                publishedDate: item.volumeInfo.publishedDate,
+                pageCount: item.volumeInfo.pageCount,
+                categories: item.volumeInfo.categories || [],
+                averageRating: item.volumeInfo.averageRating,
               }));
 
               setBooks(bookData);
@@ -36,7 +46,7 @@ const FetchBook = ({ query }) => {
           } catch (err) {
             setError("Failed to fetch data");
           } finally {
-            setLoading(false); // Set loading to false once data is fetched
+            setLoading(false);
           }
         };
 
@@ -47,6 +57,16 @@ const FetchBook = ({ query }) => {
     }
   }, [query]);
 
+  const openModal = (book) => {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBook(null);
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -56,14 +76,19 @@ const FetchBook = ({ query }) => {
   }
 
   if (!query) {
-    return null; // Don't show anything when there's no query
+    return null;
   }
 
   if (books.length === 0) {
     return <p>No books found</p>;
   }
 
-  return <BookList books={books} />;
+  return (
+    <div>
+      <BookList books={books} openModal={openModal} />
+      {isModalOpen && <BookModal book={selectedBook} closeModal={closeModal} />}
+    </div>
+  );
 };
 
 export default FetchBook;

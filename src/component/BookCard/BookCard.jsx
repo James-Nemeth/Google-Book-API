@@ -1,7 +1,11 @@
 import classes from "./BookCard.module.scss";
 
-const BookCard = ({ children }) => {
-  return <div className={classes.card}>{children}</div>;
+const BookCard = ({ children, onClick }) => {
+  return (
+    <div className={classes.card} onClick={onClick}>
+      {children}
+    </div>
+  );
 };
 
 export default BookCard;
