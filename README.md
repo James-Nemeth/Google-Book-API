@@ -70,13 +70,14 @@ Using JSX, JavaScript and SCSS/Sass.
 
 ## Known issues
 
-- Styling on Book Cards and be a bit janky when at specific sizes (quite small margin)
+- Styling on Book Cards can be a bit janky when at specific sizes (quite small margin)
 
 ---
 
 ## Future Goals
 
 - To Implement pagination to allow more books to be resulted while still allowing the user to not have to scroll very far down the page.
+- To refactor code by using content.
 
 ---
 
