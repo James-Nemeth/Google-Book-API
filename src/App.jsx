@@ -7,10 +7,10 @@ import BooksPage from "./pages/BooksPage/BooksPage";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="Google-Book-API">
         <Header />
         <Routes>
-          <Route path="/Google-Book-API" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/books" element={<BooksPage />} />
         </Routes>
         <Footer />

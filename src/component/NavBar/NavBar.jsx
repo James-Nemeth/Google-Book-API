@@ -11,11 +11,7 @@ const NavBar = () => {
         <h3 data-testid="navbar-title">Google Books API</h3>
       </div>
       <div>
-        <NavLink
-          className={linkStyles}
-          to="/Google-Book-API"
-          data-testid="home-link"
-        >
+        <NavLink className={linkStyles} to="/" data-testid="home-link">
           Home
         </NavLink>
         <NavLink className={linkStyles} to="/books" data-testid="books-link">
