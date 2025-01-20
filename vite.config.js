@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: "/Google-Book-API",
-  // Added slash
   test: {
     environment: 'jsdom',
     globals: true,
