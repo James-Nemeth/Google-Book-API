@@ -2,7 +2,8 @@
 
 ## Requirements / Purpose
 
-- MVP:
+
+## MVP:
 - Header section introducing the page
 - Form containing a text input and a submit / search button
 - A grid of books
