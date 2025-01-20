@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/Google-Book-API" element={<HomePage />} />
           <Route path="/books" element={<BooksPage />} />
         </Routes>
         <Footer />
