@@ -44,12 +44,15 @@ const FetchBook = ({ query }) => {
   return (
     <div>
       {fetchStatus === "IDLE" && (
-        <p style={{ textAlign: "center" }}>Please enter a Book Title</p>
+        <p style={{ textAlign: "center", fontWeight: "bold" }}>
+          Please enter a Book Title
+        </p>
       )}
       {fetchStatus === "LOADING" && <Loader />}
-      {fetchStatus === "FAILURE" && <p>{error}</p>}
-      {fetchStatus === "SUCCESS" && books.length === 0 && <p>No books found</p>}
-      {fetchStatus === "SUCCESS" && books.length > 0 && (
+      {fetchStatus === "FAILURE" && (
+        <p style={{ textAlign: "center" }}>{error}</p>
+      )}
+      {fetchStatus === "SUCCESS" && (
         <>
           <BookList books={books} openModal={openModal} />
           {isModalOpen && (

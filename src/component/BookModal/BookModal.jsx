@@ -14,7 +14,7 @@ const BookModal = ({ book, closeModal }) => {
           <img
             src={book.thumbnail}
             alt={`Cover of ${book.title}`}
-            className={classes.modalThumbnail}
+            className={classes.thumbnail}
           />
         )}
         <p className={classes.author}>By: {book.authors.join(" ")}</p>

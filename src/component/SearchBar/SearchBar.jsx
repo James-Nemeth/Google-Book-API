@@ -23,12 +23,17 @@ const SearchBar = ({ onSearch }) => {
       <input
         className={classes.input}
         type="text"
-        id="searchbar"
+        id="searchBar"
         name="searchBar"
         value={inputText}
         onChange={onInputChange}
       />
-      <button className={classes.btn} id="searchButton" name="searchButton">
+      <button
+        className={classes.btn}
+        id="searchButton"
+        name="searchButton"
+        disabled={inputText < 0}
+      >
         Search
       </button>
     </form>

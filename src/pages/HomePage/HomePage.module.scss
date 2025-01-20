@@ -1,6 +1,6 @@
 .hero {
   width: 100vw; 
-  height: 85vh; 
+  height: 87vh; 
   background-image: url("https://collegeinfogeek.com/wp-content/uploads/2018/11/Essential-Books.jpg");
   background-position: center;
   background-size: cover;
@@ -44,3 +44,13 @@
     text-decoration: underline;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .title {
+    font-size: 2rem;
+  }
+  .button {
+    padding: 0.8rem 2rem;
+    font-size: 0.7rem;
+  }
+ }
