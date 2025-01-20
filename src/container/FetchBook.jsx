@@ -50,7 +50,9 @@ const FetchBook = ({ query }) => {
       )}
       {fetchStatus === "LOADING" && <Loader />}
       {fetchStatus === "FAILURE" && (
-        <p style={{ textAlign: "center" }}>{error}</p>
+        <p style={{ textAlign: "center" }}>
+          {error} for "{query}"
+        </p>
       )}
       {fetchStatus === "SUCCESS" && (
         <>

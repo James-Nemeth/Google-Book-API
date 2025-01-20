@@ -25,6 +25,7 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         id="searchBar"
         name="searchBar"
+        data-testid="searchBar"
         value={inputText}
         onChange={onInputChange}
       />
@@ -32,6 +33,7 @@ const SearchBar = ({ onSearch }) => {
         className={classes.btn}
         id="searchButton"
         name="searchButton"
+        data-testid="searchButton"
         disabled={inputText < 0}
       >
         Search

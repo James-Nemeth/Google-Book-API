@@ -1,7 +1,15 @@
+import { useEffect } from "react";
 import classes from "./BookModal.module.scss";
 
 const BookModal = ({ book, closeModal }) => {
   if (!book) return;
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <div className={classes.overlay} onClick={closeModal}>
