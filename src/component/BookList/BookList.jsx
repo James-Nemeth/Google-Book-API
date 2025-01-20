@@ -21,14 +21,12 @@ const BookList = ({ books }) => {
           {book.thumbnail ? (
             <img
               src={book.thumbnail}
-              alt={`Cover of ${book.title}`}
+              alt={`Book Cover of ${book.title}`}
               className={classes.thumbnail}
             />
           ) : (
             <div className={classes.placeholder}>
-              <span className={classes.noCoverText}>
-                No Book Cover Available
-              </span>
+              <span className={classes.coverText}>No Book Cover Available</span>
             </div>
           )}
           <h1 className={classes.title}>{book.title}</h1>

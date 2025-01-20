@@ -1,18 +1,15 @@
 import classes from "./BookModal.module.scss";
 
 const BookModal = ({ book, closeModal }) => {
-  if (!book) return null;
+  if (!book) return;
 
   return (
-    <div className={classes.modalOverlay} onClick={closeModal}>
-      <div
-        className={classes.modalContent}
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div className={classes.overlay} onClick={closeModal}>
+      <div className={classes.content}>
         <button className={classes.closeButton} onClick={closeModal}>
           &times;
         </button>
-        <h2 className={classes.modalTitle}>{book.title}</h2>
+        <h2 className={classes.title}>{book.title}</h2>
         {book.thumbnail && (
           <img
             src={book.thumbnail}
@@ -20,25 +17,27 @@ const BookModal = ({ book, closeModal }) => {
             className={classes.modalThumbnail}
           />
         )}
-        <p className={classes.modalAuthors}>By: {book.authors.join(", ")}</p>
-        <p className={classes.modalDescription}>
+        <p className={classes.author}>By: {book.authors.join(" ")}</p>
+        <p className={classes.details}>
           <strong>Description: </strong>
           {book.description || "No description available."}
         </p>
-        <p className={classes.modalPublisher}>
+        <p className={classes.details}>
           <strong>Publisher: </strong>
-          {book.publisher}
+          {book.publisher || "No publisher available."}
         </p>
-        <p className={classes.modalDate}>
-          <strong>Date:</strong> {book.publishedDate}
+        <p className={classes.details}>
+          <strong>Date:</strong> {book.publishedDate || "No date available."}
         </p>
-        <p className={classes.modalPageCount}>
-          <strong>Page Count:</strong> {book.pageCount}
+        <p className={classes.details}>
+          <strong>Page Count:</strong>{" "}
+          {book.pageCount || "No page count available."}
         </p>
-        <p className={classes.modalCategories}>
-          <strong>Categories:</strong> {book.categories.join(", ")}
+        <p className={classes.details}>
+          <strong>Categories:</strong>{" "}
+          {book.categories.join(" ") || "No category available."}
         </p>
-        <p className={classes.modalRating}>
+        <p className={classes.details}>
           <strong>Rating:</strong> {book.averageRating || "No rating available"}
         </p>
       </div>
