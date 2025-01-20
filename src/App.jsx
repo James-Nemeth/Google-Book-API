@@ -1,12 +1,20 @@
-import FetchBook from "./container/FetchBook";
+import Footer from "./component/Footer/Footer";
+import Header from "./component/Header/Header";
+import { BrowserRouter, Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage/HomePage";
+import BooksPage from "./pages/BooksPage/BooksPage";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>Google Books</h1>
-        <FetchBook />
-      </div>
+      <BrowserRouter basename="Google-Book-API">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/books" element={<BooksPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }

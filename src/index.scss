@@ -1,5 +1,8 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
+
+
+
 /* Document
    ========================================================================== */
 
@@ -195,7 +198,7 @@ select { /* 1 */
 button,
 [type="button"],
 [type="reset"],
-[type="submit"]
+[type="submit"] 
 
 /**
  * Remove the inner border and padding in Firefox.
@@ -343,4 +346,22 @@ template {
 
 [hidden] {
   display: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap');
+
+body {
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Playwrite AU SA", serif;
+  background-color: rgb(255, 255, 211);
+}
+
+a {
+  text-decoration: none;
+  &:visited {
+    color: black;
+
+  }
 }

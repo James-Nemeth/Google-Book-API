@@ -1,49 +1,68 @@
-import React, { useState, useEffect } from "react";
-import BookDetails from "../component/BookDetails";
+import { useEffect, useState } from "react";
+import { fetchBooksByQuery } from "../services/book-services";
+import BookList from "../component/BookList/BookList";
+import BookModal from "../component/BookModal/BookModal";
+import Loader from "../component/Loader/Loader";
 
-const FetchBook = () => {
-  const [book, setBook] = useState(null);
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+
+const FetchBook = ({ query }) => {
+  const [fetchStatus, setFetchStatus] = useState("IDLE");
+  const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchBookData = async () => {
-      try {
-        const response = await fetch(
-          "https://www.googleapis.com/books/v1/volumes?q=intitle:the+lord+of+the+rings"
-        );
-        const data = await response.json();
-        if (data.items && data.items.length > 0) {
-          const bookData = data.items[0].volumeInfo;
-          setBook({
-            title: bookData.title,
-            authors: bookData.authors || ["Unknown Author"],
-            thumbnail: bookData.imageLinks?.thumbnail || null,
-          });
-        } else {
-          setError("No books found");
-        }
-      } catch (err) {
-        setError("Failed to fetch data");
-      }
-    };
+    if (!query) {
+      setFetchStatus("IDLE");
+      return;
+    }
 
-    fetchBookData();
-  }, []);
+    setFetchStatus("LOADING");
+    fetchBooksByQuery(query, API_KEY)
+      .then((bookData) => {
+        setBooks(bookData);
+        setFetchStatus("SUCCESS");
+      })
+      .catch((err) => {
+        setError(err.message);
+        setFetchStatus("FAILURE");
+      });
+  }, [query]);
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+  const openModal = (book) => {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
 
-  if (!book) {
-    return <p>Loading...</p>;
-  }
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBook(null);
+  };
 
   return (
-    <BookDetails
-      title={book.title}
-      authors={book.authors}
-      thumbnail={book.thumbnail}
-    />
+    <div>
+      {fetchStatus === "IDLE" && (
+        <p style={{ textAlign: "center", fontWeight: "bold" }}>
+          Please enter a Book Title
+        </p>
+      )}
+      {fetchStatus === "LOADING" && <Loader />}
+      {fetchStatus === "FAILURE" && (
+        <p style={{ textAlign: "center" }}>
+          {error} for "{query}"
+        </p>
+      )}
+      {fetchStatus === "SUCCESS" && (
+        <>
+          <BookList books={books} openModal={openModal} />
+          {isModalOpen && (
+            <BookModal book={selectedBook} closeModal={closeModal} />
+          )}
+        </>
+      )}
+    </div>
   );
 };
 
